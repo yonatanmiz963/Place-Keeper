@@ -8,31 +8,30 @@
     <title>Map</title>
 </head>
 
-<body onload="getPosition()">
+<body onload="init()">
+    <header>
+        <nav>
+            <div class="topnav">
+                <a class="active" href="index.html">Home</a>
+            </div>
+        </nav>
+    </header>
 
-    <div id="map" style="width:50%; height:60vh; margin-top:10px;"></div>
-    <h2>Current Position:</h2>
-    <table border="1">
-        <tr>
-            <td>Latitude</td>
-            <td id="latitude"></td>
-        </tr>
-        <tr>
-            <td>Longitude</td>
-            <td id="longitude"></td>
-        </tr>
-        <tr>
-            <td>Accuracy</td>
-            <td id="accuracy"></td>
-        </tr>
-        <tr>
-            <td>Timestamp</td>
-            <td id="timestamp"></td>
-        </tr>
-    </table>
+    <div class="container">
 
-    <p id="locationError"></p>
+        <div id="map"></div>
 
+        <div class="places-container">
+
+            <table class="places-table">
+
+            </table>
+
+
+
+        </div>
+
+    </div>
 
 
     <script src="js/storage-service.js"></script>

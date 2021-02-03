@@ -1,3 +1,8 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
 .custom-map-control-button {
     appearance: button;
     background-color: #fff;
@@ -10,8 +15,42 @@
     height: 40px;
     font: 400 18px Roboto, Arial, sans-serif;
     overflow: hidden;
+    outline: 0;
 }
 
 .custom-map-control-button:hover {
     background: #ebebeb;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 400px;
+    ;
+}
+
+.topnav {
+    display: flex;
+    justify-content: end;
+    flex-direction: row-reverse;
+    height: 40px;
+}
+
+.topnav .active {
+    margin-right: 350px;
+    margin-top: 10px;
+}
+
+.places-container {
+    background-color: rgb(240, 240, 240);
+    width: 50%;
+    height: 100%;
+}
+
+#map {
+    width: 50%;
+    height: 100%;
 }

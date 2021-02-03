@@ -6,14 +6,20 @@ function mapReady() {
     console.log('Map is ready');
 }
 
-function initMap(lat, lng) {
-    // if (!lat) lat = 32.0749831;
-    // if (!lng) lat = 34.9120554;
+
+function init() {
+
+    renderPlaces();
+    initMap();
+}
+
+function initMap(lat = 29.55805, lng = 34.94821) {
+
     var elMap = document.querySelector('#map');
     var options = {
         center: {
-            lat: 29.55805,
-            lng: 34.94821
+            lat,
+            lng
         },
         zoom: 12
     };
@@ -116,24 +122,45 @@ function handleLocationError(error) {
     }
 }
 
-function showLocation(position) {
-    console.log(position);
-    document.getElementById("latitude").innerHTML = position.coords.latitude;
-    document.getElementById("longitude").innerHTML = position.coords.longitude;
-    document.getElementById("accuracy").innerHTML = position.coords.accuracy;
+// function showLocation(position) {
+//     console.log(position);
+//     document.getElementById("latitude").innerHTML = position.coords.latitude;
+//     document.getElementById("longitude").innerHTML = position.coords.longitude;
+//     document.getElementById("accuracy").innerHTML = position.coords.accuracy;
 
-    var date = new Date(position.timestamp);
-    document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    initMap(position.coords.latitude, position.coords.longitude);
+//     var date = new Date(position.timestamp);
+//     document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+//     initMap(position.coords.latitude, position.coords.longitude);
+// }
+
+// function getPosition() {
+//     if (!navigator.geolocation) {
+//         alert("HTML5 Geolocation is not supported in your browser.");
+//         return;
+//     }
+
+//     // One shot position getting or continus watch
+//     navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
+//     // navigator.geolocation.watchPosition(showLocation, handleLocationError);
+// }
+
+
+
+
+
+function renderPlaces() {
+    var places = getPlaces();
+    var strHtmls = places.map((place) => {
+        return `<tr><td data-id="place.id">${place.id} ${place.placeName}</td></tr>`;
+
+    }).join('');
+
+    console.log(strHtmls);
+    document.querySelector('.places-table').innerHTML = strHtmls;
 }
 
-function getPosition() {
-    if (!navigator.geolocation) {
-        alert("HTML5 Geolocation is not supported in your browser.");
-        return;
-    }
 
-    // One shot position getting or continus watch
-    navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
-    // navigator.geolocation.watchPosition(showLocation, handleLocationError);
+function onRemoveBook(bookId) {
+    removeBook(bookId);
+    renderBooks();
 }
