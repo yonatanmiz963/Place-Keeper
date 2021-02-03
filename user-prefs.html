@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perferances</title>
+    <link rel="stylesheet" href="css/user-prefs.css">
+</head>
+
+<body onload="onInit()">
+    <header>
+        <h2>Perferances</h2>
+    </header>
+
+    <nav>
+        <div class="topnav">
+            <a class="active" href="index.html">Home</a>
+        </div>
+    </nav>
+
+    <form onSubmit="savePerfs(event)" id="user-prefs">
+
+        Choose background color: <input type="color" id="background-color" name="background-color" form="frmRegister" value="#ff0000" />
+
+        <br> Choose text color: <input type="color" id="color" name="text-color" form="user-prefs" value="#ff0000" />
+
+        <br>
+
+        <label for="dob ">Date of Birth:</label><input type="date" form="user-prefs" id="dob" name="birth-date" />
+
+        <br>
+
+        <button>Save changes</button>
+
+    </form>
+
+    <script src="js/storage-service.js "></script>
+    <script src="js/user-prefs-service.js "></script>
+    <script src="js/user-prefs-controller.js "></script>
+</body>
+
+</html>
