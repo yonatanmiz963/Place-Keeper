@@ -1,6 +1,60 @@
 body {
     box-sizing: border-box;
     margin: 0;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    height: 20%;
+    background-color: gray;
+}
+
+.topnav {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.topnav .bar {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bar a {
+    text-decoration: none;
+    font-size: 1.875rem;
+    color: #5bc0de;
+    transition: .3s;
+}
+
+.bar a:hover {
+    color: #b1ebfd;
+    transform: scale(1.1);
+}
+
+.title {
+    margin: 0 auto;
+    position: absolute;
+    font-size: 1.25rem;
+    top: 22%;
+}
+
+main {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9dadf;
+}
+
+.back-photo {
+    align-self: center;
+    height: 100%;
 }

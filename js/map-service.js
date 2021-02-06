@@ -30,11 +30,9 @@ function getLastId() {
 }
 
 
-
 function getPlaces() {
     var places = loadFromStorage(key);
     if (!places) return;
-    // console.log(gPlaceId);
     gPlaces = places;
     var  startIdx  =  gPageIdx * PAGE_SIZE;  
     if (startIdx >= gPlaces.length) gPageIdx = 0;  

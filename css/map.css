@@ -1,6 +1,7 @@
 body {
     box-sizing: border-box;
     margin: 0;
+    height: 100vh;
 }
 
 .custom-map-control-button {
@@ -21,20 +22,33 @@ body {
     background: #ebebeb;
 }
 
+header {
+    height: 10%;
+}
+
+nav {
+    height: 100%;
+}
+
 .topnav {
     display: flex;
     justify-content: end;
+    align-items: center;
     flex-direction: row-reverse;
-    height: 40px;
-    background-color: grey;
-    ;
+    height: 100%;
+    background-color: #292b2c;
 }
 
 .topnav .active {
-    margin-right: 30px;
-    margin-bottom: 10px;
-    align-self: flex-end;
+    margin-inline-end: 2rem;
     text-decoration: none;
+    transition: .3s;
+    color: #5bc0de;
+}
+
+.topnav .active:hover {
+    transform: scale(1.1);
+    color: #b1ebfd;
 }
 
 .main-container {
@@ -42,7 +56,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 615px;
+    height: 90%;
     background-color: rgb(240, 240, 240);
 }
 
@@ -61,15 +75,6 @@ body {
     margin: 10px;
 }
 
-.table {
-    border: 1px solid black;
-}
-
 .places-table td {
     cursor: pointer;
-}
-
-.places-table .delete {
-    display: flex;
-    justify-content: flex-end;
 }

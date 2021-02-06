@@ -28,8 +28,6 @@ function createMap(lat = 29.55805, lng = 34.94821) {
 
 
 
-
-
 function addMapEvents() {
 
     // get location
@@ -73,9 +71,10 @@ function addMapEvents() {
             position: mapsMouseEvent.latLng,
         });
 
+        saveLocation(mapsMouseEvent.latLng.toJSON(), null, 2);
+
         // save location to storage
         // saveLocation(JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2);
-        saveLocation(mapsMouseEvent.latLng.toJSON(), null, 2);
 
         // infoWindow.setContent(
         //     JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
@@ -83,8 +82,6 @@ function addMapEvents() {
         // infoWindow.open(map);
     });
 }
-
-
 
 
 
@@ -126,28 +123,7 @@ function handleLocationError(error) {
             break;
     }
 }
-// function showLocation(position) {
-//     console.log(position);
-//     document.getElementById("latitude").innerHTML = position.coords.latitude;
-//     document.getElementById("longitude").innerHTML = position.coords.longitude;
-//     document.getElementById("accuracy").innerHTML = position.coords.accuracy;
 
-//     var date = new Date(position.timestamp);
-//     document.getElementById("timestamp").innerHTML = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-//     initMap(position.coords.latitude, position.coords.longitude);
-// }
-
-// function getPosition() {
-//     if (!navigator.geolocation) {
-//         alert("HTML5 Geolocation is not supported in your browser.");
-//         return;
-
-//     }
-
-//     // One shot position getting or continus watch
-//     navigator.geolocation.getCurrentPosition(showLocation, handleLocationError);
-//     // navigator.geolocation.watchPosition(showLocation, handleLocationError);
-// }
 
 function goToLocation(lat, lng) {
     var position = { lat, lng };
