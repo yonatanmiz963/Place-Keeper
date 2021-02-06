@@ -20,17 +20,32 @@ function savePlace(lat, lng, placeName) {
     gPlaces.push(newPlace);
     // console.log(gPlaces);
     saveToStorage(key, gPlaces);
+    saveToStorage('lastId', gPlaceId);
 }
 
+function getLastId() {
+    var lastId = loadFromStorage('lastId');
+    if (lastId) gPlaceId = lastId;
+    // console.log(gPlaceId);
+}
 
 
 
 function getPlaces() {
     var places = loadFromStorage(key);
-    gPlaceId = places[-1].id + 1;
-    console.log(gPlaceId);
+    if (!places) return;
+    // console.log(gPlaceId);
     gPlaces = places;
     var  startIdx  =  gPageIdx * PAGE_SIZE;  
     if (startIdx >= gPlaces.length) gPageIdx = 0;  
     return  gPlaces.slice(startIdx,  startIdx  +  PAGE_SIZE)
+}
+
+function deletePlaceById(id) {
+    var places = loadFromStorage(key);
+    var placeIndex = places.findIndex(place => {
+        return place.id === id;
+    });
+    places.splice(placeIndex, 1);
+    saveToStorage(key, places);
 }

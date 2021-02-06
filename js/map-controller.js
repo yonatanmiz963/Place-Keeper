@@ -1,20 +1,16 @@
 'use strict'
 
-
-
-function mapReady() {
-    console.log('Map is ready');
-}
-
+var map;
 
 function init() {
-
+    createMap();
+    addMapEvents();
     renderPlaces();
-    initMap();
+    getLastId();
 }
 
-function initMap(lat = 29.55805, lng = 34.94821) {
 
+function createMap(lat = 29.55805, lng = 34.94821) {
     var elMap = document.querySelector('#map');
     var options = {
         center: {
@@ -24,27 +20,25 @@ function initMap(lat = 29.55805, lng = 34.94821) {
         zoom: 12
     };
 
-    var map = new google.maps.Map(
+    map = new google.maps.Map(
         elMap,
         options
     );
+}
 
-    var marker = new google.maps.Marker({
-        position: {
-            lat,
-            lng
-        },
-        map,
-        title: 'Hello World!'
-    });
 
+
+
+
+function addMapEvents() {
 
     // get location
     var infoWindow = new google.maps.InfoWindow();
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
+    const locationButton = document.createElement("img");
+    locationButton.src = "../img/my-location1.png";
     locationButton.classList.add("custom-map-control-button");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
     locationButton.addEventListener("click", () => {
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
@@ -53,12 +47,11 @@ function initMap(lat = 29.55805, lng = 34.94821) {
                     const pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
-
                     };
                     infoWindow.setPosition(pos);
-                    infoWindow.setContent("Location found.");
+                    infoWindow.setContent("Your Location");
                     infoWindow.open(map);
-                    map.setCenter(pos);
+                    map.panTo(pos);
                 },
                 () => {
                     handleLocationError(true, infoWindow, map.getCenter());
@@ -69,7 +62,6 @@ function initMap(lat = 29.55805, lng = 34.94821) {
             handleLocationError(false, infoWindow, map.getCenter());
         }
     });
-
 
     // listens for clicking the map event, getting the coords
 
@@ -95,12 +87,25 @@ function initMap(lat = 29.55805, lng = 34.94821) {
 
 
 
+
 function saveLocation(pos) {
-    var placeName = prompt('Place name?');
-    savePlace(pos.lat, pos.lng, placeName);
+    var newName = prompt('Place name?');
+    placeMarker(newName, pos);
+    savePlace(pos.lat, pos.lng, newName);
+    renderPlaces();
 }
 
 
+function placeMarker(newName, position) {
+    var marker = new google.maps.Marker({
+        position: {
+            lat: position.lat,
+            lng: position.lng
+        },
+        map,
+        title: `${newName}`
+    });
+}
 
 
 function handleLocationError(error) {
@@ -121,7 +126,6 @@ function handleLocationError(error) {
             break;
     }
 }
-
 // function showLocation(position) {
 //     console.log(position);
 //     document.getElementById("latitude").innerHTML = position.coords.latitude;
@@ -137,6 +141,7 @@ function handleLocationError(error) {
 //     if (!navigator.geolocation) {
 //         alert("HTML5 Geolocation is not supported in your browser.");
 //         return;
+
 //     }
 
 //     // One shot position getting or continus watch
@@ -144,14 +149,31 @@ function handleLocationError(error) {
 //     // navigator.geolocation.watchPosition(showLocation, handleLocationError);
 // }
 
-
+function goToLocation(lat, lng) {
+    var position = { lat, lng };
+    console.log(position);
+    map.panTo(position);
+}
 
 
 
 function renderPlaces() {
     var places = getPlaces();
+    if (!places) return;
+    places.forEach(place => {
+        var position = {
+            lat: place.lat,
+            lng: place.lng
+        }
+        placeMarker(place.placeName, position);
+    });
     var strHtmls = places.map((place) => {
-        return `<tr><td data-id="place.id">${place.id} ${place.placeName}</td></tr>`;
+        var position = { lat: place.lat, lng: place.lng };
+        // console.log(position);
+        return `<tr onclick="goToLocation(${place.lat}, ${place.lng})"><td data-id="place.id" > ${place.id}</td>
+        <td>${place.placeName}</td>
+        <td class="delete"><button class="delete btn btn-outline-danger" onclick="deletePlace(${place.id})">Delete</button></td>
+        </tr>`;
 
     }).join('');
 
@@ -160,7 +182,8 @@ function renderPlaces() {
 }
 
 
-function onRemoveBook(bookId) {
-    removeBook(bookId);
-    renderBooks();
+
+function deletePlace(id) {
+    deletePlaceById(id);
+    renderPlaces();
 }
