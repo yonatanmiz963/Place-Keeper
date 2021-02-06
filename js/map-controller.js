@@ -94,7 +94,6 @@ function addMapEvents() {
         });
         // saveLocation(mapsMouseEvent.latLng.toJSON(), null, 2);
         gLastPos = mapsMouseEvent.latLng.toJSON();
-        console.log(gLastPos);
         $('#input-modal').modal('show');
     });
 
@@ -153,8 +152,6 @@ function renderPlaces() {
         placeMarker(place.placeName, position);
     });
     var strHtmls = places.map((place) => {
-        var position = { lat: place.lat, lng: place.lng };
-        // console.log(position);
         return `<tr onclick='goToLocation(${place.lat}, ${place.lng})'><td data-id='place.id' > ${place.id}</td>
                         <td>${place.placeName}</td>
                         <td class='delete'><button class='delete btn btn-outline-danger' onclick='deletePlace(${place.id})'>Delete</button></td>
@@ -162,7 +159,7 @@ function renderPlaces() {
 
     }).join('');
 
-    console.log(strHtmls);
+    // console.log(strHtmls);
     document.querySelector('.places-table').innerHTML = strHtmls;
 }
 
