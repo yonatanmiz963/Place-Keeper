@@ -7,6 +7,7 @@ function init() {
     addMapEvents();
     renderPlaces();
     getLastId();
+    setUserPerf();
 }
 
 
@@ -162,4 +163,13 @@ function renderPlaces() {
 function deletePlace(id) {
     deletePlaceById(id);
     renderPlaces();
+}
+
+function setUserPerf() {
+    var userData = getUserData();
+    var elHeader = document.querySelector('.topnav');
+
+    var elTitle = document.querySelector('.active');
+    elHeader.style.backgroundColor = userData.backgroundColor;
+    elTitle.style.color = userData.textColor;
 }

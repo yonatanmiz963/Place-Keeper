@@ -6,35 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perferances</title>
     <link rel="stylesheet" href="css/user-prefs.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body onload="onInit()">
     <header>
-        <h2>Perferances</h2>
+        <nav>
+            <div class="topnav">
+                <a class="active" href="index.html">Go back</a>
+            </div>
+        </nav>
     </header>
 
-    <nav>
-        <div class="topnav">
-            <a class="active" href="index.html">Home</a>
-        </div>
-    </nav>
+    <div class="forms-container">
 
-    <form onSubmit="savePerfs(event)" id="user-prefs">
+        <form class="inputs-form" onSubmit="savePerfs(event)" id="user-prefs">
+            <div class="input">
+                <label>Choose background color: </label><input type="color" id="background-color" name="background-color" form="frmRegister" value="#ff0000"></input>
+            </div>
 
-        Choose background color: <input type="color" id="background-color" name="background-color" form="frmRegister" value="#ff0000" />
+            <div class="input">
+                <label>Choose text color: </label><input type="color" id="color" name="text-color" form="user-prefs" value="#ff0000"></input>
+            </div>
 
-        <br> Choose text color: <input type="color" id="color" name="text-color" form="user-prefs" value="#ff0000" />
+            <div class="input">
+                <label for="dob ">Date of Birth:</label><input type="date" form="user-prefs" id="dob" name="birth-date" />
+            </div>
 
-        <br>
+            <div>
+                <button class="save-changes btn btn-outline-primary">Save changes</button>
+            </div>
 
-        <label for="dob ">Date of Birth:</label><input type="date" form="user-prefs" id="dob" name="birth-date" />
-
-        <br>
-
-        <button>Save changes</button>
-
-    </form>
-
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="js/storage-service.js "></script>
     <script src="js/user-prefs-service.js "></script>
     <script src="js/user-prefs-controller.js "></script>

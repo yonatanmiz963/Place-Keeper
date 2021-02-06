@@ -47,3 +47,9 @@ function deletePlaceById(id) {
     places.splice(placeIndex, 1);
     saveToStorage(key, places);
 }
+
+function getUserData() {
+    var userData = loadFromStorage('userData');
+    if (!userData) return;
+    return userData;
+}
