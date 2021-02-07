@@ -55,7 +55,7 @@ function addMapEvents() {
     // get location
     var infoWindow = new google.maps.InfoWindow();
     const locationButton = document.createElement('img');
-    locationButton.src = '../img/my-location1.png';
+    locationButton.src = '/img/my-location1.png';
     locationButton.classList.add('custom-map-control-button');
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
@@ -156,7 +156,6 @@ function renderPlaces() {
                         <td>${place.placeName}</td>
                         <td class='delete'><button class='delete btn btn-outline-danger' onclick='deletePlace(${place.id})'>Delete</button></td>
                         </tr>`;
-
     }).join('');
 
     // console.log(strHtmls);
